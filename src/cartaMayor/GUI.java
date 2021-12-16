@@ -21,11 +21,11 @@ public class GUI extends JFrame {
     private Header headerProject;
     private JLabel carta1, carta2;
     private JButton sacarCarta, ayuda;
-    private JPanel panelBaraja;
-    private ImageIcon imagenBaraja;
-    private JTextArea mensajesSalida, resultadosCarta;
+   // private JPanel panelBaraja;
+    private JTextArea mensajesSalida, resultadosCarta, panelBaraja;
     private Escucha escucha;
     private ModelMayor modelMayor;
+    private String ganador, cartas;
 
     /**
      * Constructor of GUI class
@@ -75,14 +75,13 @@ public class GUI extends JFrame {
         constraints.anchor=GridBagConstraints.LINE_START;
         this.add(ayuda,constraints);
 
-        carta1 = new JLabel(imagenBaraja);
-        carta2 = new JLabel(imagenBaraja);
-
-        panelBaraja = new JPanel();
+        panelBaraja = new JTextArea();
         panelBaraja.setPreferredSize(new Dimension(300,180));
         panelBaraja.setBorder(BorderFactory.createTitledBorder("La baraja "));
-        panelBaraja.add(carta1);
-        panelBaraja.add(carta2);
+        //panelBaraja.add(carta1);
+        //panelBaraja.add(carta2);
+        panelBaraja.setBackground(null);
+        panelBaraja.setEditable(false);
 
         constraints.gridx=0;
         constraints.gridy=2;
@@ -149,8 +148,30 @@ public class GUI extends JFrame {
         @Override
         public void actionPerformed(ActionEvent e) {
             if(e.getSource()==sacarCarta){
-                modelMayor.getGanador();
-                resultadosCarta.setText(modelMayor.getGanador());
+                if(modelMayor.getPaloUsuario() > modelMayor.getPaloMaquina()) {
+                    ganador = "Tu carta a sido mayor, Ganaste la ronda!!";
+                }else{
+                    if(modelMayor.getPaloUsuario() < modelMayor.getPaloMaquina()){
+                        ganador = "Tu carta no ha sido la mayor, Perdiste :(";
+                    }else{
+                        if (modelMayor.getPaloUsuario() == modelMayor.getPaloMaquina()){
+                            if (modelMayor.getValorUsuario() > modelMayor.getValorMaquina()){
+                                ganador = "Tu carta a sido mayor, Ganaste la ronda!!";
+                            } else {
+                                if (modelMayor.getValorUsuario() < modelMayor.getValorMaquina()){
+                                    ganador = "Tu carta no ha sido la mayor, Perdiste :(";
+                                }else {
+                                    ganador = "Las cartas son iguales, debes volver a sacar";
+                                }
+                            }
+                        }
+                    }
+                }
+                cartas = "Usuario: " + modelMayor.getValorUsuario() + " - " + modelMayor.getPaloRealUsuario()
+                        + "\nMaquina: " + modelMayor.getValorMaquina() + " - " + modelMayor.getPaloRealMaquina();
+                //maquina = panelBaraja.setText(modelMayor.getPaloRealMaquina());
+                panelBaraja.setText(cartas);
+                resultadosCarta.setText(ganador);
             }else{
                 if(e.getSource()==ayuda){
                     JOptionPane.showMessageDialog(null,MENSAJE_INICIO);

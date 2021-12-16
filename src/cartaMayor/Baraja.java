@@ -17,8 +17,8 @@ public class Baraja {
      * @return number between (1,10)
      */
     public int getValor(){
-        Random aleatorio = new Random();
-        valor = aleatorio.nextInt(10)+1;
+        Random aleatorioValor = new Random();
+        valor = aleatorioValor.nextInt(10)+1;
 
         return valor;
     }
@@ -28,8 +28,8 @@ public class Baraja {
      * @return number between (1,14)
      */
     public int getPalo(){
-        Random aleatorio = new Random();
-        palo = aleatorio.nextInt(4)+1;
+        Random aleatorioPalo = new Random();
+        palo = aleatorioPalo.nextInt(4)+1;
 
         return palo;
     }
@@ -70,13 +70,13 @@ public class Baraja {
      */
     public String getPaloReal() {
         switch (palo){
-            case 1: paloReal="Oros";
+            case 1: paloReal="Bastos";
                 break;
-            case 2: paloReal="Copas";
+            case 2: paloReal="Espadas";
                 break;
-            case 3: paloReal="Espadas";
+            case 3: paloReal="Copas";
                 break;
-            case 4: paloReal="Bastos";
+            case 4: paloReal="Oros";
                 break;
 
         }
