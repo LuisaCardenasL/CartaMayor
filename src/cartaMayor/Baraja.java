@@ -1,4 +1,4 @@
-package myProject;
+package cartaMayor;
 
 import java.util.Random;
 

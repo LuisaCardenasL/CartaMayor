@@ -1,4 +1,4 @@
-package myProject;
+package cartaMayor;
 
 /**
  * ModelMayor apply the rules, the user wins if his card is the highest value
@@ -8,6 +8,8 @@ package myProject;
 public class ModelMayor {
     private Baraja cartaUsuario, cartaMaquina;
     private String ganador;
+    private int valorUsuario, valorMaquina;
+    private String paloUsuario, paloMaquina;
 
     /**
      * Class constructor
@@ -43,5 +45,25 @@ public class ModelMayor {
             }
         }
         return ganador;
+    }
+
+    public int getValorMaquina() {
+        valorMaquina = cartaMaquina.getValorReal();
+        return valorMaquina;
+    }
+
+    public int getValorUsuario() {
+        valorUsuario = cartaUsuario.getValorReal();
+        return valorUsuario;
+    }
+
+    public String getPaloUsuario(){
+        paloUsuario = cartaUsuario.getPaloReal();
+        return  paloUsuario;
+    }
+
+    public String getPaloMaquina() {
+        paloMaquina = cartaMaquina.getPaloReal();
+        return paloMaquina;
     }
 }
